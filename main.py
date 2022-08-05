@@ -1,25 +1,27 @@
-from requests_html import HTMLSession
 from bs4 import BeautifulSoup
-import time
+from requests import get
 
 
-s = HTMLSession()
+url = 'https://www.olx.pl/nieruchomosci/'
 
-url = "https://www.olx.pl/nieruchomosci/"
+page = get(url)
+
+bs = BeautifulSoup(page.content,'html.parser')
+
+
+for offer in bs.find_all('div' ,class_='css-19ucd76'):
 
 
 
+  footer = offer.find("p", class_="css-p6wsjo-Text eu5v0x0")
+  if (footer != None):
+   location =  footer.get_text().split("-")[0]
+   print(location)
+   print("\n")
 
 
-r = s.get(url)
-soup = BeautifulSoup(r.content,'html.parser')
+ #print(location)
 
-for offer in soup.find_all('div',class_='offer-wrapper'):
-    footer = offer.find ('td', class_='bottom-cell')
-    location = footer.find('small', class_='breadcrumb').get_text().strip().split(',')[0]
-    print(location)
-
-#print(getdata(url))
 
 
 
