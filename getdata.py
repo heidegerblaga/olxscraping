@@ -20,7 +20,6 @@ def cleardata(data):
      clean.append(float(data[6][1].split('m²')[0].strip().replace(' ','').replace(',','.')))
      clean.append(data[7][1].strip())
 
-     print(clean)
 
      return clean
 
@@ -31,8 +30,14 @@ def getdata(link):
      page = get(url)
      bs = BeautifulSoup(page.content, 'html.parser')
 
+     location = bs.find(class_="css-1pyxm30").find_all('p')
+
+     print(location)
+     print('\n')
+
      price = bs.find(class_="css-okktvh-Text eu5v0x0").get_text()
      id = bs.find(class_="css-9xy3gn-Text eu5v0x0").get_text().split(':')
+
      content = []
      content.append(price)
      content.append(id)
@@ -48,7 +53,7 @@ def getdata(link):
 
 
 
-     session.add(Crawler(property=data[2],price=data[0],metrprice=data[3],market=data[4],area=data[5],plotarea=data[6],building=data[7],offerid=data[1]))
+     #session.add(Crawler(property=data[2],price=data[0],metrprice=data[3],market=data[4],area=data[5],plotarea=data[6],building=data[7],offerid=data[1]))
      session.commit()
 
 

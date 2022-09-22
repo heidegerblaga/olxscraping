@@ -16,6 +16,7 @@ class Crawler(Base):
 
     id = Column(Integer, primary_key=True)
     property = Column(String)
+    location = Column(String)
     price = Column(Float)
     metrprice = Column(Float)
     market = Column(String)
@@ -24,8 +25,9 @@ class Crawler(Base):
     building = Column(String)
     offerid = Column(Integer)
 
+
     def __repr__(self):
-        return f'''<Crawler(property={self.property},price={self.price},metrprice={self.metrprice}, 
+        return f'''<Crawler(property={self.property},location={self.location},price={self.price},metrprice={self.metrprice}, 
                market={self.market},area={self.area},plotarea={self.plotarea},building={self.building})>'''
 
 

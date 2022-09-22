@@ -15,7 +15,6 @@ def getlinks(link):
       if (footer != None):
         if (('olx' not in (footer['href']))and('otodom' not in (footer['href']))):
          new = 'https://www.olx.pl' + footer['href']
-         print(new)
          getdata(new)
 
 
@@ -25,13 +24,6 @@ def getlinks(link):
 
  #  print("\n")
 
-  # price = offer.find('p',class_='css-wpfvmn-Text eu5v0x0').get_text().strip().split('do negocjacji')[0]
-   #title = offer.find('h6', class_="css-v3vynn-Text eu5v0x0").get_text()
-   #lc.append(location)
-   #pr.append(price)
-   #tl.append(title)
-
-   #print("%s - %s "%(location,price))
 
 
 
