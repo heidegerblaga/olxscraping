@@ -1,37 +1,26 @@
 from bs4 import BeautifulSoup
 from requests import get
 from getdata import getdata
+from nextpage import nextpage
 
-
-url = 'https://www.olx.pl/d/nieruchomosci/domy/sprzedaz/'
-page = get(url)
-bs = BeautifulSoup(page.content,'html.parser')
-
-
-
-for offer in bs.find_all('div' ,class_="css-19ucd76"):
-  footer = offer.find(class_="css-1bbgabe", href=True)
-  print('______________________')
-  if (footer != None):
-    if (('olx' not in (footer['href']))and('otodom' not in (footer['href']))):
-       new = 'https://www.olx.pl' + footer['href']
-       print(new)
-       getdata(new)
-    else:
-      print(footer['href'])
-      #getdata(footer['href'])
-  print('[end]______________________')
+def getlinks(link):
+    url = link
+    page = get(url)
+    bs = BeautifulSoup(page.content,'html.parser')
 
 
 
+    for offer in bs.find_all('div' ,class_="css-19ucd76"):
+      footer = offer.find(class_="css-1bbgabe", href=True)
+      if (footer != None):
+        if (('olx' not in (footer['href']))and('otodom' not in (footer['href']))):
+         new = 'https://www.olx.pl' + footer['href']
+         print(new)
+         getdata(new)
 
 
+    getlinks(nextpage(link))
 
-
-
-  if (footer != None):
-    location =  footer.get_text().split("-")[0]
-    #print(location)
 
 
  #  print("\n")
