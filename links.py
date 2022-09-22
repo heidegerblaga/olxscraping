@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from requests import get
 from getdata import getdata
 
+
 url = 'https://www.olx.pl/d/nieruchomosci/domy/sprzedaz/'
 page = get(url)
 bs = BeautifulSoup(page.content,'html.parser')

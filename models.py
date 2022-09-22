@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,Integer,String,Column,Date
+from sqlalchemy import create_engine,Integer,String,Float,Column,Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -9,17 +9,18 @@ session = Session()
 Base = declarative_base()
 
 
+
 class Crawler(Base):
 
     __tablename__="olxestate"
 
     id = Column(Integer, primary_key=True)
     property = Column(String)
-    price = Column(Integer)
-    metrprice = Column(Integer)
+    price = Column(Float)
+    metrprice = Column(Float)
     market = Column(String)
-    area = Column(Integer)
-    plotarea = Column(Integer)
+    area = Column(Float)
+    plotarea = Column(Float)
     building = Column(String)
     offerid = Column(Integer)
 
